@@ -57,8 +57,6 @@ Returns: `{ id, name, email, referralCode }`
 Body: `{ email, password }`
 Returns: `{ id, name, email }` + sets httpOnly JWT cookie
 
-### POST /api/logout
-Clears the auth cookie.
 
 ### GET /api/dashboard (protected)
 Returns: `{ referralCode, points, referredUsers: [{ name, email, createdAt }] }`
@@ -86,6 +84,6 @@ referred user's link update all happen inside a single Prisma transaction.
 ## Known Limitations / Future Work
 
 - No email verification on signup
-- Access token has no refresh flow (short expiry only)
+- Access token has no refresh flow 
 - No admin view / leaderboard
-- No pagination on referredUsers list (fine at this scale)
+- No pagination on referredUsers list 
