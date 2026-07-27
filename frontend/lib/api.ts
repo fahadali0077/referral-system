@@ -4,6 +4,7 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
     credentials: 'include',
+    cache: 'no-store',
     headers: { 'Content-Type': 'application/json', ...options.headers },
   });
 
