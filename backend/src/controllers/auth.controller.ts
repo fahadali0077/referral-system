@@ -5,8 +5,8 @@ import { signToken } from '../utils/jwt';
 
 const cookieOpts = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'strict' as const,
+  secure: true,             // must be true when sameSite is 'none'
+  sameSite: 'none' as const, // required for cross-site (vercel.app -> onrender.com)
   maxAge: 60 * 60 * 1000,
 };
 
