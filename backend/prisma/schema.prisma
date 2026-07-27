@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String     @id @default(uuid())
+  name            String
+  email           String     @unique
+  password        String
+  referralCode    String     @unique
+  points          Int        @default(0)
+  referredById    String?
+  referredBy      User?      @relation("Referrals", fields: [referredById], references: [id])
+  referrals       User[]     @relation("Referrals")
+  referralAsUser  Referral?  @relation("ReferredUser")
+  referralsGiven  Referral[] @relation("Referrer")
+  createdAt       DateTime   @default(now())
+
+  @@index([referredById])
+}
+
+model Referral {
+  id             String   @id @default(uuid())
+  referrerId     String
+  referredUserId String   @unique
+  pointsAwarded  Int      @default(10)
+  createdAt      DateTime @default(now())
+
+  referrer     User @relation("Referrer", fields: [referrerId], references: [id])
+  referredUser User @relation("ReferredUser", fields: [referredUserId], references: [id])
+
+  @@index([referrerId])
+}
