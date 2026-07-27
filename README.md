@@ -20,7 +20,7 @@ A full-stack referral system built with Next.js, Express, PostgreSQL, and Prisma
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 18
 - Docker (for PostgreSQL) or a local Postgres instance
 
 ### Backend
